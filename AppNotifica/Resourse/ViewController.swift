@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  AppNotifica
 //
-//  Created by IFB BIOTIC 19 on 03/11/22.
+//  Created by Dario Pintor on 13/10/22.
 //
 
 import UIKit
@@ -17,4 +17,3 @@ class ViewController: UIViewController {
 
 }
 
-//ok
