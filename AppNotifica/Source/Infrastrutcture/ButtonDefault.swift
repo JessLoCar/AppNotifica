@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-// mudar telas pro modo escuro
 class ButtonDefault: UIButton{
     
     init(botao: String){
