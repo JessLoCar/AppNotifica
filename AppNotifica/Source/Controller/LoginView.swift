@@ -8,44 +8,44 @@
 import Foundation
 import UIKit
 
-class LoginView: UIView {
-    //MARK: - Initialize
-        override init(frame: CGRect) {
-            //chama o frame da superclasse
-            super.init(frame: frame)
-            // muda a cor de fundo do app para branco
-            self.backgroundColor = .viewBackGroundColor
-            setupVisualElements()
-            
-        }
-    //cria a função com as propriadades da imagem no login
-    var imageLogin: UIImageView = {
-        let imagem = UIImageView ()
-        imagem.image = UIImage(named: "ImageLogin")
-        imagem.contentMode = .scaleAspectFit
-        imagem.translatesAutoresizingMaskIntoConstraints = false
+class LoginView: ViewDefault {
+    
+    
+  //MARK: -  Clouseres
+  var onRegisterTap: (() -> Void)?
+  var onLoginTap: (() -> Void)?
+    
+    //cria a variável com as propriadades da imagem no login
+    var imageLogin = ImageDefault(image: "ImageLogin")
+       
+    //cria a variável com as propriadades da label no login
+    var imageLabel = LabelDefault(text: "Registre e gerencie as ocorrências do seu IF", font: UIFont.systemFont(ofSize: 17, weight: .regular))
+    
+    //cria a variável com as propriadades da text no login
+    var emailTextField = TextFieldDefault (placeholder: "E-mail", keyBordType: .emailAddress, returnKeyType: .next)
+    
+    //cria a variável com as propriadades da text no login
+    var senhaTextField : TextFieldDefault  = {
+        let text = TextFieldDefault(placeholder: "Senha", keyBordType: .emailAddress, returnKeyType: .done)
         
-        return imagem
-    }()
+        text.isSecureTextEntry = true;
+        
+        return text
+         }()
     
-    //cria a função com as propriadades da label no login
-    var imageLabel = LabelDefault(label: "Registre e gerencie as ocorrências do seu IF")
+    //cria a variável com as propriadades da butao no logor
+    var buttonLogar = ButtonDefault(botao: "LOGAR")
     
-    //cria a função com as propriadades da text no login
-    var emailTextField = EmailDefault(email: "E-mail")
-    
-    //cria a função com as propriadades da text no login
-    var senhaTextField = SenhaDefault(senha: "Senha")
-    
-    //cria a função com as propriadades da butao no logor
-    var buttonLogar = ButtonDefault (botao: "LOGAR")
-    
-    //cria a função com as propriadades do botão registrar
+    //cria a variável com as propriadades do botão registrar
     var buttonRegistrar = ButtonDefault(botao: "REGISTRAR")
         
-    
-    
-    func setupVisualElements() {
+    //organiza meus componentes na tela
+    override func setupVisualElements() {
+        super.setupVisualElements()
+        emailTextField.delegate = self
+        senhaTextField.delegate = self
+        
+        //adiciona os componentes como subview da view atual
         self.addSubview(imageLogin)
         self.addSubview(imageLabel)
         self.addSubview(emailTextField)
@@ -53,6 +53,11 @@ class LoginView: UIView {
         self.addSubview(buttonLogar)
         self.addSubview(buttonRegistrar)
         
+        buttonRegistrar.addTarget(self, action: #selector(registerTap), for: .touchUpInside)
+        
+        buttonLogar.addTarget(self, action: #selector(loginTap), for: .touchUpInside)
+        
+        //configura a disposição dos elementos na view atual
         NSLayoutConstraint.activate([
         
             imageLogin.widthAnchor.constraint(equalToConstant: 274.99),
@@ -93,8 +98,30 @@ class LoginView: UIView {
         
         ])
     }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    //MARK: - Actions
+    @objc
+    private func registerTap(){
+        onRegisterTap?()
     }
     
+    @objc
+    private func loginTap(){
+        onLoginTap?()
+    }
+}
+
+extension LoginView: UITextFieldDelegate {
+  
+    //configura o botão seguinte do teclado
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == emailTextField {
+            self.senhaTextField.becomeFirstResponder()
+        
+    } else {
+        textField.resignFirstResponder()
+    }
+
+        return true
+    }
 }

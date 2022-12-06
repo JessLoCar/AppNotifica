@@ -9,30 +9,27 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    
-    static var viewBackGroundColor : UIColor{
-        UIColor(named: "viewBackGroundColor") ?? .white
-        
+    static var viewBackGroundColor: UIColor {
+        UIColor(named: "viewBackGroundColor") ?? .black
     }
-    static var labelColor : UIColor{
-        UIColor(named: "labelColor") ?? .white
+    static var textLabelColor: UIColor {
+        UIColor(named: "textLabelColor") ?? .lightGray
     }
     
-    static var emailTextFieldColor : UIColor{
-        UIColor(named: "emailTextFieldColor") ?? .white
+    static var buttonBackGroundColor: UIColor {
+        UIColor(named: "buttonBackGroundColor") ?? .blue
     }
     
-    static var senhaTextFieldColor : UIColor{
-        UIColor(named: "senhaTextFieldColor") ?? .white
-        
+    static var textFieldBackGroundColor: UIColor {
+        UIColor(named: "textFieldBackGroundColor") ?? .white
     }
     
-    static var buttonLogarColor : UIColor{
-        UIColor(named: "buttonLogarColor") ?? .white
+    static var placeHolderColor: UIColor {
+        UIColor(named: "placeHolderColor") ?? .white
     }
     
-    static var buttonRegistrarColor : UIColor{
-        UIColor(named: "buttonRegistrarColor") ?? .white
-        
-    }
+    
+    
+    
 }
+
