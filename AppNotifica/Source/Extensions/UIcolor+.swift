@@ -21,11 +21,11 @@ extension UIColor {
     }
     
     static var textFieldBackGroundColor: UIColor {
-        UIColor(named: "textFieldBackGroundColor") ?? .white
+        UIColor(named: "textFieldBackGroundColor") ?? .lightGray
     }
     
     static var placeHolderColor: UIColor {
-        UIColor(named: "placeHolderColor") ?? .white
+        UIColor(named: "placeHolderColor") ?? .lightGray
     }
     
     
